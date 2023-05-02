@@ -1,22 +1,31 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-long long ara[101];
+const int N = 100;
+// fibonacci memory for avoid recalculation
+long long fib_memory[N];
 
-long long fibo(int n)
-{
+// fibonacci recursive function
+long long fibo(int n) {
+    // base case
     if (n <= 2) return 1;
-    if (ara[n] != 0) return ara[n];
-    ara[n] = fibo(n - 1) + fibo(n - 2);
-    return ara[n];
+    
+    // retrurn previous calculated value
+    if (fib_memory[n] != 0) {
+        return fib_memory[n];
+    }
+    
+    // recursive calculation
+    fib_memory[n] = fibo(n - 1) + fibo(n - 2);
+    return fib_memory[n];
 }
 
-int main()
-{
-    cout << fibo(3) << endl;
-    cout << fibo(30) << endl;
-    cout << fibo(10) << endl;
-    cout << fibo(419) << endl;
+int main() {
+    // you can calculate 1 - 92 
+    int n;
+    cin >> n;
+    
+    cout << fibo(n) << endl;
 
     return 0;
 }
